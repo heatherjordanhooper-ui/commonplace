@@ -6,17 +6,16 @@ import { Grid3x3, BookOpen, Plus, X } from 'lucide-react';
 export default function Home() {
   const [view, setView] = useState('moodboard');
   const [items, setItems] = useState([
-  const [items, setItems] = useState([
-  { id: 1, url: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600', color: '#F5F0E8' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600', color: '#E8DDD0' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#F4EDE3' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600', color: '#DCD4C8' },
-  { id: 5, url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600', color: '#C9BFB3' },
-  { id: 6, url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600', color: '#F7F3EE' },
-  { id: 7, url: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600', color: '#E5DDD5' },
-  { id: 8, url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600', color: '#D8CFC4' },
-  { id: 9, url: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600', color: '#F2EBE3' },
-  { id: 10, url: 'https://images.unsplash.com/photo-1616047006789-b7af5afb8c20?w=600', color: '#E0D5CA' },
+ const [items, setItems] = useState([
+    { id: 1, url: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600', color: '#F5F0E8' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600', color: '#E8DDD0' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#F4EDE3' },
+    { id: 4, url: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600', color: '#DCD4C8' },
+    { id: 5, url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600', color: '#C9BFB3' },
+    { id: 6, url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600', color: '#F7F3EE' },
+    { id: 7, url: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600', color: '#E5DDD5' },
+    { id: 8, url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600', color: '#D8CFC4' },
+  ]);
 ]);
   ]);
   const [showLookbook, setShowLookbook] = useState(false);
