@@ -5,14 +5,16 @@ import React, { useState } from 'react';
 export default function Home() {
   const [view, setView] = useState('moodboard');
   const [items, setItems] = useState([
-    { id: 1, url: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600', color: '#E8E4DF' },
-    { id: 2, url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600', color: '#D4CFC8' },
-    { id: 3, url: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600', color: '#F5F1EC' },
-    { id: 4, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#C9C4BE' },
-    { id: 5, url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600', color: '#E0DBD5' },
-    { id: 6, url: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600', color: '#F2EDE8' },
-    { id: 7, url: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=600', color: '#DDD8D2' },
-    { id: 8, url: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600', color: '#E8E3DD' },
+    { id: 1, url: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600', color: '#E8DDD0' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600', color: '#C9B8A8' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600', color: '#D4C5B0' },
+    { id: 4, url: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600', color: '#F2EBE3' },
+    { id: 5, url: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600', color: '#A89F91' },
+    { id: 6, url: 'https://images.unsplash.com/photo-1490725263030-1f0521cec8ec?w=600', color: '#E6DDD1' },
+    { id: 7, url: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=600', color: '#B8A99A' },
+    { id: 8, url: 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?w=600', color: '#DCD4C8' },
+    { id: 9, url: 'https://images.unsplash.com/photo-1558769132-cb1aea441c11?w=600', color: '#C4B5A6' },
+    { id: 10, url: 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?w=600', color: '#E8E0D5' },
   ]);
   const [showLookbook, setShowLookbook] = useState(false);
   const [urlInput, setUrlInput] = useState('');
@@ -55,22 +57,22 @@ export default function Home() {
             <div>
               <span className="text-gray-400 block mb-3 uppercase">palette</span>
               <div className="flex gap-2">
-                {['#E8E4DF', '#D4CFC8', '#F5F1EC', '#C9C4BE', '#E0DBD5'].map(c => (
+                {['#E8DDD0', '#C9B8A8', '#D4C5B0', '#F2EBE3', '#A89F91'].map(c => (
                   <div key={c} className="w-6 h-6 rounded-full border border-gray-200" style={{ backgroundColor: c }} />
                 ))}
               </div>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">textures</span>
-              <p className="text-gray-700">marble, brass, linen</p>
+              <p className="text-gray-700">fabric, skin, movement</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">mood</span>
-              <p className="text-gray-700">refined, elegant, timeless</p>
+              <p className="text-gray-700">editorial, effortless, cool</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">shapes</span>
-              <p className="text-gray-700">clean lines, architectural</p>
+              <p className="text-gray-700">silhouettes, draping, flow</p>
             </div>
           </div>
         </div>
@@ -83,9 +85,9 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-16 py-20">
         <div className="grid grid-cols-3 gap-8">
           {[
-            { week: 'jan 20–26', theme: 'modern luxury', cover: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600' },
-            { id: 9, url: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600', color: '#F8F5F1' },
-            { week: 'jan 06–12', theme: 'refined spaces', cover: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600' },
+            { week: 'jan 20–26', theme: 'street style', cover: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=600' },
+            { week: 'jan 13–19', theme: 'editorial mood', cover: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600' },
+            { week: 'jan 06–12', theme: 'fashion week', cover: 'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600' },
           ].map((week, idx) => (
             <div 
               key={idx}
@@ -140,24 +142,25 @@ export default function Home() {
       <div className="max-w-5xl mx-auto">
         <div className="relative h-screen flex items-center justify-center">
           <img 
-            src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=1400" 
+            src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=1400" 
             alt="" 
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60" />
           <div className="relative z-10 text-white text-center px-8">
             <p className="text-xs mb-6 tracking-widest uppercase opacity-70">issue 03 · jan 20–26</p>
-            <h1 className="text-7xl font-light mb-6 tracking-tight">modern luxury</h1>
-            <p className="text-sm tracking-wide opacity-80">where architecture meets elegance</p>
+            <h1 className="text-7xl font-light mb-6 tracking-tight">street style</h1>
+            <p className="text-sm tracking-wide opacity-80">effortless cool, captured</p>
           </div>
         </div>
 
         <div className="px-20 py-24 max-w-3xl mx-auto">
           <h2 className="text-xs tracking-widest text-gray-400 mb-6 uppercase">editor's note</h2>
           <p className="text-lg leading-loose text-gray-700 font-light">
-            this week, your eye gravitated toward spaces of refined simplicity. marble surfaces catching light, 
-            brass fixtures speaking quietly of craftsmanship, furniture that understands the value of negative space. 
-            there is an intelligence here, a restraint that speaks louder than excess ever could. timeless, considered, essential.
+            this week, you saved the kind of images that stop you mid-scroll. editorial moments, 
+            people who wear clothes like they invented them, street style that feels less 
+            curated and more caught. there's a confidence here, an ease. the way fabric moves, 
+            the way someone stands—it's all saying something without trying too hard.
           </p>
         </div>
 
@@ -229,3 +232,4 @@ export default function Home() {
     </div>
   );
 }
+   
