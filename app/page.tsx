@@ -1,12 +1,10 @@
-'use client';
+''use client';
 
 import React, { useState } from 'react';
-import { Grid3x3, BookOpen, Plus, X } from 'lucide-react';
 
 export default function Home() {
   const [view, setView] = useState('moodboard');
   const [items, setItems] = useState([
- const [items, setItems] = useState([
     { id: 1, url: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600', color: '#F5F0E8' },
     { id: 2, url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600', color: '#E8DDD0' },
     { id: 3, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#F4EDE3' },
@@ -15,8 +13,6 @@ export default function Home() {
     { id: 6, url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600', color: '#F7F3EE' },
     { id: 7, url: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600', color: '#E5DDD5' },
     { id: 8, url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600', color: '#D8CFC4' },
-  ]);
-]);
   ]);
   const [showLookbook, setShowLookbook] = useState(false);
   const [urlInput, setUrlInput] = useState('');
@@ -36,7 +32,6 @@ export default function Home() {
   const MoodboardView = () => (
     <div className="flex-1 overflow-y-auto">
       <div className="max-w-7xl mx-auto px-16 py-20">
-        
         <div className="grid grid-cols-4 gap-3">
           {items.map((item, idx) => (
             <div 
@@ -60,22 +55,22 @@ export default function Home() {
             <div>
               <span className="text-gray-400 block mb-3 uppercase">palette</span>
               <div className="flex gap-2">
-                {['#8B7355', '#E8DCC4', '#6B8E23', '#4682B4', '#2F4F4F'].map(c => (
+                {['#F5F0E8', '#E8DDD0', '#F4EDE3', '#DCD4C8', '#C9BFB3'].map(c => (
                   <div key={c} className="w-6 h-6 rounded-full border border-gray-200" style={{ backgroundColor: c }} />
                 ))}
               </div>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">textures</span>
-              <p className="text-gray-700">organic, mineral, soft</p>
+              <p className="text-gray-700">linen, ceramic, wood</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">mood</span>
-              <p className="text-gray-700">quiet, contemplative</p>
+              <p className="text-gray-700">dreamy, soft, cozy</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">shapes</span>
-              <p className="text-gray-700">horizons, curves</p>
+              <p className="text-gray-700">organic, gentle curves</p>
             </div>
           </div>
         </div>
@@ -86,12 +81,11 @@ export default function Home() {
   const ArchiveView = () => (
     <div className="flex-1 overflow-y-auto">
       <div className="max-w-7xl mx-auto px-16 py-20">
-        
         <div className="grid grid-cols-3 gap-8">
           {[
-            { week: 'jan 20–26', theme: 'winter light', cover: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600' },
-            { week: 'jan 13–19', theme: 'earthen tones', cover: 'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?w=600' },
-            { week: 'jan 06–12', theme: 'quiet spaces', cover: 'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600' },
+            { week: 'jan 20–26', theme: 'winter light', cover: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600' },
+            { week: 'jan 13–19', theme: 'cozy spaces', cover: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600' },
+            { week: 'jan 06–12', theme: 'soft morning', cover: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600' },
           ].map((week, idx) => (
             <div 
               key={idx}
@@ -113,7 +107,6 @@ export default function Home() {
   const AddItemView = () => (
     <div className="flex-1 overflow-y-auto">
       <div className="max-w-2xl mx-auto px-16 py-20">
-        
         <div className="space-y-8">
           <div>
             <label className="block text-xs text-gray-400 mb-3 uppercase tracking-wide">image url</label>
@@ -145,10 +138,9 @@ export default function Home() {
   const LookbookModal = () => (
     <div className="fixed inset-0 bg-white z-50 overflow-y-auto">
       <div className="max-w-5xl mx-auto">
-        
         <div className="relative h-screen flex items-center justify-center">
           <img 
-            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400" 
+            src="https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=1400" 
             alt="" 
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -163,10 +155,9 @@ export default function Home() {
         <div className="px-20 py-24 max-w-3xl mx-auto">
           <h2 className="text-xs tracking-widest text-gray-400 mb-6 uppercase">editor's note</h2>
           <p className="text-lg leading-loose text-gray-700 font-light">
-            this week, your attention drifted toward edges—where land meets sky, where shadow touches light. 
-            there's a recurring pull toward vastness held within stillness. the palette stayed cold but somehow 
-            comforting, like winter light through a window at 4pm. what you saved wasn't escape but a kind of 
-            witnessing. the images don't ask for anything. they just exist, quietly.
+            this week, your attention drifted toward soft spaces—cream walls and gentle light, ceramic vessels holding delicate stems. 
+            there's a pull toward the unhurried, the handmade, the quietly beautiful. each image whispers rather than shouts, 
+            inviting slowness, inviting breath. perhaps this is what home feels like.
           </p>
         </div>
 
@@ -192,7 +183,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-gray-900">
-      
       <header className="border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-20 py-12">
           <div className="flex items-center justify-between mb-16">
