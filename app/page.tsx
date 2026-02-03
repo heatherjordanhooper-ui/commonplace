@@ -12,7 +12,7 @@ export default function Home() {
     { id: 5, url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600', color: '#E0DBD5' },
     { id: 6, url: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600', color: '#F2EDE8' },
     { id: 7, url: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=600', color: '#DDD8D2' },
-    { id: 8, url: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600', color: '#E8E3DD' },s
+    { id: 8, url: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600', color: '#E8E3DD' },
   ]);
   const [showLookbook, setShowLookbook] = useState(false);
   const [urlInput, setUrlInput] = useState('');
@@ -55,22 +55,22 @@ export default function Home() {
             <div>
               <span className="text-gray-400 block mb-3 uppercase">palette</span>
               <div className="flex gap-2">
-                {['#F5F0E8', '#E8DDD0', '#F4EDE3', '#DCD4C8', '#C9BFB3'].map(c => (
+                {['#E8E4DF', '#D4CFC8', '#F5F1EC', '#C9C4BE', '#E0DBD5'].map(c => (
                   <div key={c} className="w-6 h-6 rounded-full border border-gray-200" style={{ backgroundColor: c }} />
                 ))}
               </div>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">textures</span>
-              <p className="text-gray-700">linen, ceramic, wood</p>
+              <p className="text-gray-700">marble, brass, linen</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">mood</span>
-              <p className="text-gray-700">dreamy, soft, cozy</p>
+              <p className="text-gray-700">refined, elegant, timeless</p>
             </div>
             <div>
               <span className="text-gray-400 block mb-3 uppercase">shapes</span>
-              <p className="text-gray-700">organic, gentle curves</p>
+              <p className="text-gray-700">clean lines, architectural</p>
             </div>
           </div>
         </div>
@@ -83,9 +83,9 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-16 py-20">
         <div className="grid grid-cols-3 gap-8">
           {[
-            { week: 'jan 20–26', theme: 'winter light', cover: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600' },
-            { week: 'jan 13–19', theme: 'cozy spaces', cover: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600' },
-            { week: 'jan 06–12', theme: 'soft morning', cover: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600' },
+            { week: 'jan 20–26', theme: 'modern luxury', cover: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600' },
+            { id: 9, url: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=600', color: '#F8F5F1' },
+            { week: 'jan 06–12', theme: 'refined spaces', cover: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600' },
           ].map((week, idx) => (
             <div 
               key={idx}
@@ -140,24 +140,24 @@ export default function Home() {
       <div className="max-w-5xl mx-auto">
         <div className="relative h-screen flex items-center justify-center">
           <img 
-            src="https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=1400" 
+            src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=1400" 
             alt="" 
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60" />
           <div className="relative z-10 text-white text-center px-8">
             <p className="text-xs mb-6 tracking-widest uppercase opacity-70">issue 03 · jan 20–26</p>
-            <h1 className="text-7xl font-light mb-6 tracking-tight">winter light</h1>
-            <p className="text-sm tracking-wide opacity-80">where the cold air meets warm remembering</p>
+            <h1 className="text-7xl font-light mb-6 tracking-tight">modern luxury</h1>
+            <p className="text-sm tracking-wide opacity-80">where architecture meets elegance</p>
           </div>
         </div>
 
         <div className="px-20 py-24 max-w-3xl mx-auto">
           <h2 className="text-xs tracking-widest text-gray-400 mb-6 uppercase">editor's note</h2>
           <p className="text-lg leading-loose text-gray-700 font-light">
-            this week, your attention drifted toward soft spaces—cream walls and gentle light, ceramic vessels holding delicate stems. 
-            there's a pull toward the unhurried, the handmade, the quietly beautiful. each image whispers rather than shouts, 
-            inviting slowness, inviting breath. perhaps this is what home feels like.
+            this week, your eye gravitated toward spaces of refined simplicity. marble surfaces catching light, 
+            brass fixtures speaking quietly of craftsmanship, furniture that understands the value of negative space. 
+            there is an intelligence here, a restraint that speaks louder than excess ever could. timeless, considered, essential.
           </p>
         </div>
 
