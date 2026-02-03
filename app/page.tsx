@@ -5,14 +5,14 @@ import React, { useState } from 'react';
 export default function Home() {
   const [view, setView] = useState('moodboard');
   const [items, setItems] = useState([
-    { id: 1, url: 'https://images.unsplash.com/photo-1556912173-46c336c7fd55?w=600', color: '#F5F0E8' },
-    { id: 2, url: 'https://images.unsplash.com/photo-1600210492493-0946911123ea?w=600', color: '#E8DDD0' },
-    { id: 3, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#F4EDE3' },
-    { id: 4, url: 'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600', color: '#DCD4C8' },
-    { id: 5, url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600', color: '#C9BFB3' },
-    { id: 6, url: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600', color: '#F7F3EE' },
-    { id: 7, url: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?w=600', color: '#E5DDD5' },
-    { id: 8, url: 'https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600', color: '#D8CFC4' },
+    { id: 1, url: 'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=600', color: '#E8E4DF' },
+    { id: 2, url: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=600', color: '#D4CFC8' },
+    { id: 3, url: 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600', color: '#F5F1EC' },
+    { id: 4, url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600', color: '#C9C4BE' },
+    { id: 5, url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600', color: '#E0DBD5' },
+    { id: 6, url: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600', color: '#F2EDE8' },
+    { id: 7, url: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=600', color: '#DDD8D2' },
+    { id: 8, url: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=600', color: '#E8E3DD' },s
   ]);
   const [showLookbook, setShowLookbook] = useState(false);
   const [urlInput, setUrlInput] = useState('');
