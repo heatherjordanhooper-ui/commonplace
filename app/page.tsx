@@ -3,12 +3,32 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, X, Plus } from 'lucide-react';
 
+type Item = {
+  id: number;
+  url: string;
+  isUploaded?: boolean;
+};
+
+type Lookbook = {
+  week: string;
+  date: string;
+  title: string;
+  subtitle: string;
+  editorsNote: string;
+  palette: string[];
+  textures: string;
+  mood: string;
+  shapes: string;
+  imageIds: number[];
+  cover: string;
+};
+
 export default function Home() {
   const [view, setView] = useState('moodboard');
-  const [items, setItems] = useState([]);
-  const [archives, setArchives] = useState([]);
+  const [items, setItems] = useState<Item[]>([]);
+  const [archives, setArchives] = useState<Lookbook[]>([]);
   const [showLookbook, setShowLookbook] = useState(false);
-  const [currentLookbook, setCurrentLookbook] = useState(null);
+  const [currentLookbook, setCurrentLookbook] = useState<Lookbook | null>(null);
   const [urlInput, setUrlInput] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -33,29 +53,29 @@ export default function Home() {
     if (savedLookbook) setCurrentLookbook(JSON.parse(savedLookbook));
   }, []);
 
-  const saveItems = (newItems) => {
+  const saveItems = (newItems: Item[]) => {
     setItems(newItems);
     localStorage.setItem('commonplace-items', JSON.stringify(newItems));
   };
 
-  const saveLookbook = (lookbook) => {
+  const saveLookbook = (lookbook: Lookbook) => {
     setCurrentLookbook(lookbook);
     localStorage.setItem('commonplace-current-lookbook', JSON.stringify(lookbook));
   };
 
-  const saveArchives = (newArchives) => {
+  const saveArchives = (newArchives: Lookbook[]) => {
     setArchives(newArchives);
     localStorage.setItem('commonplace-archives', JSON.stringify(newArchives));
   };
 
-  const handleFileUpload = (e) => {
-    const files = Array.from(e.target.files);
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
     files.forEach(file => {
       const reader = new FileReader();
       reader.onload = (event) => {
         saveItems([...items, { 
           id: Date.now() + Math.random(), 
-          url: event.target.result,
+          url: event.target?.result as string,
           isUploaded: true
         }]);
       };
@@ -64,17 +84,17 @@ export default function Home() {
     setView('moodboard');
   };
 
-  const handleDragOver = (e) => {
+  const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(true);
   };
 
-  const handleDragLeave = (e) => {
+  const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
   };
 
-  const handleDrop = (e) => {
+  const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragging(false);
     
@@ -85,7 +105,7 @@ export default function Home() {
         reader.onload = (event) => {
           saveItems([...items, { 
             id: Date.now() + Math.random(), 
-            url: event.target.result,
+            url: event.target?.result as string,
             isUploaded: true
           }]);
         };
@@ -103,7 +123,7 @@ export default function Home() {
     }
   };
 
-  const handleRemoveItem = (id) => {
+  const handleRemoveItem = (id: number) => {
     saveItems(items.filter(item => item.id !== id));
   };
 
@@ -122,7 +142,7 @@ export default function Home() {
       const weekEnd = new Date(weekStart);
       weekEnd.setDate(weekStart.getDate() + 6);
       
-      const formatDate = (d) => {
+      const formatDate = (d: Date) => {
         const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
         return `${months[d.getMonth()]} ${d.getDate()}`;
       };
@@ -132,7 +152,6 @@ export default function Home() {
       
       const imageContent = imagesToAnalyze.map(item => {
         if (item.isUploaded) {
-          // Extract media type from data URL (e.g., data:image/png;base64,...)
           const matches = item.url.match(/^data:([^;]+);base64,(.+)$/);
           const mediaType = matches ? matches[1] : 'image/jpeg';
           const base64Data = matches ? matches[2] : item.url.split(',')[1];
@@ -173,7 +192,7 @@ export default function Home() {
         throw new Error(data.error || 'Invalid response from API');
       }
 
-      const text = data.content.find(c => c.type === 'text')?.text || '';
+      const text = data.content.find((c: any) => c.type === 'text')?.text || '';
       
       if (!text) {
         throw new Error('No text content in response');
@@ -182,7 +201,7 @@ export default function Home() {
       const cleanText = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
       const analysis = JSON.parse(cleanText);
 
-      const lookbook = {
+      const lookbook: Lookbook = {
         week: weekRange,
         date: now.toISOString(),
         title: analysis.title,
@@ -193,13 +212,13 @@ export default function Home() {
         mood: analysis.mood,
         shapes: analysis.shapes,
         imageIds: imagesToAnalyze.map(img => img.id),
-        cover: imagesToAnalyze[0]?.url
+        cover: imagesToAnalyze[0]?.url || ''
       };
 
       saveLookbook(lookbook);
       setIsGenerating(false);
       setShowLookbook(true);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Full error:', error);
       setIsGenerating(false);
       alert(`Failed: ${error.message}`);
@@ -210,7 +229,7 @@ export default function Home() {
     if (!currentLookbook) return;
     saveArchives([currentLookbook, ...archives]);
     saveItems([]);
-    saveLookbook(null);
+    saveLookbook(null as any);
     setShowLookbook(false);
     setView('moodboard');
   };
@@ -429,21 +448,14 @@ export default function Home() {
           </div>
 
           <div className="space-y-0">
-            {currentLookbook.imageIds ? 
-              currentLookbook.imageIds.map((imgId) => {
-                const item = items.find(i => i.id === imgId);
-                return item ? (
-                  <div key={imgId}>
-                    <img src={item.url} alt="" className="w-full h-screen object-cover" />
-                  </div>
-                ) : null;
-              })
-              : currentLookbook.images?.map((item) => (
-                <div key={item.id}>
+            {currentLookbook.imageIds.map((imgId) => {
+              const item = items.find(i => i.id === imgId);
+              return item ? (
+                <div key={imgId}>
                   <img src={item.url} alt="" className="w-full h-screen object-cover" />
                 </div>
-              ))
-            }
+              ) : null;
+            })}
           </div>
 
           <div className="h-20" />
