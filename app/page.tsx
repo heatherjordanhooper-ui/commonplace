@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { Sparkles, X, Plus } from 'lucide-react';
+import AuthGuard, { useAuth } from './components/AuthGuard';
+import UserMenu from './components/UserMenu';
 
 type Item = {
   id: number;
@@ -23,7 +25,8 @@ type Lookbook = {
   cover: string;
 };
 
-export default function Home() {
+function AppContent() {
+  const auth = useAuth();
   const [view, setView] = useState('moodboard');
   const [items, setItems] = useState<Item[]>([]);
   const [archives, setArchives] = useState<Lookbook[]>([]);
@@ -32,6 +35,7 @@ export default function Home() {
   const [urlInput, setUrlInput] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
+  const [showSubscribeModal, setShowSubscribeModal] = useState(false);
 
   useEffect(() => {
     const savedItems = localStorage.getItem('commonplace-items');
@@ -130,6 +134,11 @@ export default function Home() {
   const generateLookbook = async () => {
     if (items.length === 0) {
       alert('Add some images first');
+      return;
+    }
+
+    if (!auth?.subscribed) {
+      setShowSubscribeModal(true);
       return;
     }
 
@@ -487,6 +496,7 @@ export default function Home() {
         <div className="max-w-[1400px] mx-auto px-16 py-8">
           <div className="flex items-center justify-between mb-8">
             <h1 className="text-xs tracking-tight font-light font-serif">commonplace</h1>
+            <UserMenu />
           </div>
           
           <nav className="flex gap-12 text-[8px] uppercase tracking-[0.25em] font-serif">
@@ -511,6 +521,41 @@ export default function Home() {
       {view === 'add' && <AddItemView />}
 
       {showLookbook && <LookbookModal />}
+
+      {showSubscribeModal && (
+        <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center">
+          <div className="bg-[#FAFAF8] p-12 max-w-sm text-center">
+            <h2 className="text-xs tracking-tight font-light font-serif mb-6">unlock lookbooks</h2>
+            <p className="text-[9px] text-gray-500 font-serif mb-8 leading-relaxed">
+              subscribe to generate ai-powered lookbooks, palette analysis, and aesthetic curation from your moodboard
+            </p>
+            <button
+              onClick={async () => {
+                const res = await fetch('/api/stripe/checkout', { method: 'POST' });
+                const { url } = await res.json();
+                if (url) window.location.href = url;
+              }}
+              className="text-[8px] uppercase tracking-[0.25em] px-8 py-2.5 bg-black text-white hover:bg-gray-800 transition-all font-serif mb-4 block mx-auto"
+            >
+              subscribe
+            </button>
+            <button
+              onClick={() => setShowSubscribeModal(false)}
+              className="text-[8px] text-gray-400 uppercase tracking-[0.25em] hover:text-gray-600 transition-colors font-serif"
+            >
+              maybe later
+            </button>
+          </div>
+        </div>
+      )}
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <AuthGuard>
+      <AppContent />
+    </AuthGuard>
   );
 }

@@ -1,7 +1,27 @@
 import { NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 
 export async function POST(request: Request) {
   try {
+    // Auth check
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+      return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
+    }
+
+    // Subscription check
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('subscription_status')
+      .eq('id', user.id)
+      .single();
+
+    if (!profile || (profile.subscription_status !== 'active' && profile.subscription_status !== 'trialing')) {
+      return NextResponse.json({ error: 'Active subscription required' }, { status: 403 });
+    }
+
     const { images } = await request.json();
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
